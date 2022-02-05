@@ -1,0 +1,33 @@
+{{ $dateTime := .PublishDate.Format "2006-01-02" }}
+{{ $dateFormat := .Site.Params.dateFormat | default "Jan 2, 2006" }}
+  <span data-bs-toggle="tooltip" data-bs-placement="left" title="publish date">
+  <i data-feather="calendar"></i> <time datetime="{{ $dateTime }}">{{ .PublishDate.Format $dateFormat }}</time>
+  </span>
+{{ with .Params.startDate }}
+  <br>
+  <span data-bs-toggle="tooltip" data-bs-placement="left" title="start timestamp">
+  <i data-feather="play-circle"></i> {{ dateFormat "02 January 2006 15:04:05" . }}
+  </span>
+{{ end }}
+{{ with .Params.endDate }}
+  <br>
+  <span data-bs-toggle="tooltip" data-bs-placement="left" title="end timestamp">
+  <i data-feather="stop-circle"></i> {{ dateFormat "02 January 2006 15:04:05" . }}
+  </span>
+{{ end }}
+{{ with .Params.author }}
+  <br>
+  <span data-bs-toggle="tooltip" data-bs-placement="left" title="author of log">
+  <i data-feather="user"></i> {{ . }}
+  </span>
+{{ end }}
+{{ with .Params.tags }}
+  <br>
+  <span data-bs-toggle="tooltip" data-bs-placement="left" title="tags of log">
+  <i data-feather="tag"></i>
+  </span>
+  {{ range . }}
+  {{ $href := print (absURL "tags/") (urlize .) }}
+  <a class="btn btn-sm btn-outline-dark tag-btn" href="{{ $href }}">{{ . }}</a>
+  {{ end }}
+{{ end }}

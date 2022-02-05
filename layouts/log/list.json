@@ -1,0 +1,35 @@
+[
+    {{ range $index, $e := (where .Data.Pages "Type" "log" ) }}
+    {{ if $index }}, {{ end }}
+    {
+        "title": "{{ .Title }}",
+        {{ if (not .Params.startDate) }}
+        "start": "{{ dateFormat "2006-01-02T15:04:05" .Date }}",
+		{{ end }}
+        {{ with .Params.startDate }}
+        "start": "{{ . }}",
+        {{ end }}
+        {{ with .Params.endDate }}
+        "end": "{{ . }}",
+        {{ end }}
+        {{ if ( .Params.allday ) }}
+          "allDay": true,
+        {{ else }}
+          {{ if (not .Params.endDate) }}
+            "allDay": true,
+		  {{ else }}
+            {{ if (not .Params.startDate) }}
+              "allDay": true,
+		    {{ end }}
+ 	      {{ end }}
+	    {{ end }}
+        {{  with .Params.borderColor }}
+        "borderColor":  "{{ . }}",
+		{{ end }}
+        {{  with .Params.backgroundColor }}
+        "backgroundColor":  "{{ . }}",
+		{{ end }}
+        "url": "{{ .Permalink | absURL }}"
+    }
+    {{ end }}
+]

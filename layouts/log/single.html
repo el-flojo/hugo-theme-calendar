@@ -1,0 +1,15 @@
+{{ define "main" }}
+{{ if .Params.borderColor }}
+  <h1 style="color: {{ .Params.borderColor }};">{{ .Title }}</h1>
+{{ else }}
+  <h1>{{ .Title }}</h1>
+{{ end }}
+{{ partial "date-and-tags.html" . }}
+{{ if .Params.backgroundColor }}
+<p style="background-color: {{ .Params.backgroundColor }};">backgroundColor: {{ .Params.backgroundColor }}</p>
+{{ end }}
+<hr>
+<br>
+{{ .Content }}
+<br><a class="btn btn-sm btn-outline-dark tag-btn" href="/logbook">back to log ...</a>
+{{ end }}
