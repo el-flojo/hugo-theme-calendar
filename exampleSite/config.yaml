@@ -1,0 +1,82 @@
+baseURL: http://localhost:1313/logbook/
+languageCode: de-de
+title:
+theme: hugo-theme-calendar
+buildFuture: true
+
+defaultContentLanguage: en
+enableEmoji: true
+hasCJKLanguage: true
+
+taxonomies:
+  tag: tags
+
+outputs:
+  section:
+    - "html"
+    - "json"
+
+# value of pre is the icon name => see https://feathericons.com/
+menu:
+  nav:
+    - name: Logbuch
+      pre: book
+      url: /
+      weight: 1
+    - name: Log Einträge
+      pre: edit
+      url: /log/
+      weight: 2
+    - name: tags
+      pre: tag
+      url: /tags/
+      weight: 3
+    - name: rss feed
+      pre: rss
+      url: /index.xml
+      weight: 4
+
+# https://gohugo.io/getting-started/configuration-markup#
+markup:
+  defaultMarkdownHandler: goldmark
+  goldmark:
+    extensions:
+      definitionList: true
+      footnote: true
+      linkify: true
+      strikethrough: true
+      table: true
+      taskList: true
+      typographer: true
+    parser:
+      attribute: true
+      autoHeadingID: true
+    renderer:
+      hardWraps: false
+      unsafe: true
+      xHTML: false
+  highlight:
+    style: monokai
+    codeFences: true
+    hl_Lines: ""
+    lineNoStart: 1
+    lineNos: false
+    lineNumbersInTable: true
+    noClasses: true
+    tabWidth: 4
+  tableOfContents:
+    endLevel: 6
+    startLevel: 2
+
+params:
+  includeBootstrapJs: true
+  showActiveNav: true
+  containerMaxWidth: 700px
+  footerText: some footer text
+  hideFooter: false
+  katex: true
+  dateFormat: 02 January 2006
+  enableRSS: true
+  showToc: true
+  math: true
+  hiddenPostSummaryInHomePage: false
